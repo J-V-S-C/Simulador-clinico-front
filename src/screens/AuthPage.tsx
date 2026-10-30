@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { Navigate, useNavigate } from "../navigation";
 import { useAuth } from "../auth";
 
@@ -124,6 +125,7 @@ export function AuthPage() {
             Simulação educacional com pacientes fictícios. Não substitui
             assistência médica.
           </p>
+          <p className="auth-admin-link"><Link href="/admin/entrar">Acesso administrativo</Link></p>
         </div>
       </section>
     </main>

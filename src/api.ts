@@ -19,6 +19,12 @@ export const tokenStore = {
   set: (value: string) => sessionStorage.setItem(tokenKey, value),
   clear: () => sessionStorage.removeItem(tokenKey),
 };
+const adminTokenKey = "clinical-simulator-admin-token";
+export const adminTokenStore = {
+  get: () => sessionStorage.getItem(adminTokenKey),
+  set: (value: string) => sessionStorage.setItem(adminTokenKey, value),
+  clear: () => sessionStorage.removeItem(adminTokenKey),
+};
 
 export class ApiError extends Error {
   constructor(
@@ -34,14 +40,17 @@ export class ApiError extends Error {
 export async function request<T>(
   path: string,
   options: RequestInit = {},
+  admin = false,
 ): Promise<T> {
-  const token = tokenStore.get();
+  const store = admin ? adminTokenStore : tokenStore;
+  const token = store.get();
   const headers = new Headers(options.headers);
   if (options.body) headers.set("Content-Type", "application/json");
   const authenticated =
     !!token &&
     !path.startsWith("/auth/login") &&
-    !path.startsWith("/auth/register");
+    !path.startsWith("/auth/register") &&
+    !path.startsWith("/admin/login");
   if (authenticated) headers.set("Authorization", `Bearer ${token}`);
   let response: Response;
   try {
@@ -63,8 +72,8 @@ export async function request<T>(
       ? data.detail.map((item) => item.msg).join(", ")
       : data?.detail;
     if (response.status === 401 && authenticated) {
-      tokenStore.clear();
-      window.dispatchEvent(new Event(sessionExpiredEvent));
+      store.clear();
+      if (!admin) window.dispatchEvent(new Event(sessionExpiredEvent));
     }
     throw new ApiError(
       response.status,
@@ -164,4 +173,22 @@ export type ExperienceFeedback = {
   difficulty: number;
   useful_feature: string;
   improvement: string;
+};
+
+export type AdminFeedback = ExperienceFeedback & {
+  simulation_id: string;
+  user_id: string;
+  user_name: string;
+  user_email: string;
+  created_at: string;
+};
+
+export const adminApi = {
+  login: (username: string, password: string) => request<{ access_token: string }>(
+    "/admin/login", { method: "POST", body: JSON.stringify({ username, password }) }, true,
+  ),
+  me: () => request<{ username: string }>("/admin/me", {}, true),
+  accounts: () => request<User[]>("/admin/accounts", {}, true),
+  feedback: () => request<AdminFeedback[]>("/admin/feedback", {}, true),
+  logout: () => request<void>("/admin/logout", { method: "POST" }, true),
 };
