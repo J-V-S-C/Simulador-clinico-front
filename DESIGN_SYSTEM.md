@@ -1,20 +1,35 @@
-# Clinical simulator visual system
+# Sistema visual do Simulador Clínico
 
-The React interface uses the dashboard overview as its visual reference: navy headings, white surfaces, thin dividers, compact controls, and colour reserved for clinical status. The pixel patient remains in the simulation view, while the surrounding interface reads like a clinical observation panel. The diagnosis stays hidden until completion.
+O desenho da interface ajuda o estudante a localizar o que precisa observar e decidir. O painel apresenta os casos primeiro; durante o atendimento, o relógio, o paciente, a conversa, os sinais vitais e os sintomas formam uma sequência de leitura. O diagnóstico fica reservado até o fim do caso.
 
-| Token | Value | Use |
+## Cores e uso
+
+| Elemento | Valor | Aplicação |
 | --- | --- | --- |
-| Navy | `#193655` | Headings, time panel, completion action |
-| Blue | `#005bbf` | Navigation, focus, informational labels |
-| Magenta | `#ed145b` | Critical status only |
-| Pale blue | `#e9f3fc` | Subtle informational surfaces |
-| Green | `#527669` | Improvement and stable clinical status |
-| Paper | `#f5f7fa` | Page background |
+| Azul escuro | `#193655` | Títulos, ações principais e informações de tempo. |
+| Azul | `#005bbf` | Links, foco e orientações. |
+| Magenta | `#ed145b` | Alerta ou estado crítico, acompanhado de texto. |
+| Azul claro | `#e9f3fc` | Superfícies informativas discretas. |
+| Verde | `#527669` | Melhora e estado estável. |
+| Fundo claro | `#f5f7fa` | Fundo das páginas. |
 
-The interface uses the system sans stack to preserve clear rendering on lab and mobile devices. Case cards precede the source list on the dashboard, and source links form a reference list instead of coloured chips. Result, feedback, and case panels use flat white surfaces, narrow borders and square corners. The simulation keeps the site's white canvas around a central pixel-art room. Clinical panels flank the room and show numerical values with continuous severity-coloured bars. The evolution section sits below the patient simulation and can be collapsed to a brief relevant summary. Protocol and report controls live with the conversation, and ending the case is next to the clock. On phones, the room, chat, evolution, and clinical panels stack in that order. Buttons and links retain focus cues; form fields keep their normal border when focused. Motion respects reduced-motion preferences.
+A interface usa fontes sem serifa do sistema para facilitar a leitura em computadores e celulares. Cartões, resultados e formulários têm superfícies claras e bordas finas. A cor nunca deve ser a única forma de comunicar uma condição: sintomas mostram também intensidade e nome do estado; sinais vitais exibem valores e unidades.
 
-The simulation's 2D observation room uses the supplied hospital pixel-art atlas at its full aspect ratio and a transparent three-pose patient derivative. Poses respond to backend-derived severity. The room illustration is muted to keep the surrounding clinical values and controls prominent. No 3D dependency or client-side clinical model is needed.
+## Organização das telas
 
-Reusable patterns include `button`, `panel`, `eyebrow`, `feedback-panel`, cards, status pills, and form controls. Tailwind defines the palette tokens and utility layer; component CSS holds repeated visual patterns. The browser flow includes loading, empty, error, success, and finish confirmation states.
+- **Painel:** apresentação, casos disponíveis, fontes dos protocolos, histórico e avaliações do estudante. O link **Como funciona?** reabre o guia. Antes da primeira tentativa, o guia explica três etapas sem consumir o tempo do caso.
+- **Simulação:** a sala ilustrada e o chat ficam no centro; relógio e encerramento aparecem acima. Sinais vitais, sintomas e evolução acompanham o caso ao redor da sala. O chat contém conversa, consulta de protocolos, avanço de tempo e denúncia de resposta.
+- **Resultado:** reúne desfecho, evolução, interações e convite para avaliar a experiência.
+- **Administração:** tela separada para consultar contas e avaliações, protegida por sessão própria.
 
-For a formal usability study, ask at least three representative students to register, start a case, interpret signs, ask a question, reveal a protocol, and finish. Record observed issues and changes in the project submission; no participant study has been performed in this repository yet.
+Em celulares, as áreas se reorganizam em uma coluna e mantêm controles e texto legíveis. O chat foi ampliado depois de feedback dos estudantes, incluindo a área de respostas e o campo de digitação. Os botões precisam ter estado de foco visível e tamanho adequado para toque. As animações decorativas respeitam a preferência por movimento reduzido.
+
+## Componentes e estados
+
+Componentes reutilizados incluem botões, cartões, rótulos de seção, indicadores, mensagens de erro, painéis de feedback e campos de formulário. A interface apresenta estados de carregamento, ausência de dados, sucesso, falha de conexão, sessão expirada, confirmação de encerramento e caso concluído. O texto deve explicar a ação possível em cada estado.
+
+A sala usa a folha de pixel art fornecida ao projeto e um paciente derivado em três poses. A pose muda conforme a gravidade informada pela API. Ilustração e animação ajudam a perceber o contexto, mas **os valores clínicos oficiais são os números e estados devolvidos pelo servidor**. Os protocolos resumidos contêm links para suas fontes públicas.
+
+## Validação visual
+
+As capturas históricas de desktop e celular estão em [docs/VALIDATION.md](docs/VALIDATION.md). Elas correspondem a revisões anteriores da interface. A versão atual, com guia e chat ampliado, ainda precisa de verificação visual registrada e de teste com participantes representativos. O roteiro está em [docs/USABILITY_STUDY.md](docs/USABILITY_STUDY.md).

@@ -120,6 +120,11 @@ button:disabled {
 .full {
   width: 100%;
 }
+.button-sm {
+  min-height: 36px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+}
 .text-button {
   border: 0;
   background: transparent;
@@ -2265,3 +2270,150 @@ select:disabled { color: #70899d !important; cursor: not-allowed; opacity: .7; }
 .admin-login-card .button { margin-top: .75rem; }
 .auth-admin-link { margin-top: 1rem; }
 @media (max-width: 600px) { .admin-header { flex-direction: column; } }
+.section-heading-note { margin: 4px 0 0; font-size: .82rem; color: #8295a7; }
+.guide-trigger-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1.25rem;
+  padding: .75rem clamp(1rem, 2vw, 1.5rem);
+  background: #ffffff;
+  border: 1px solid #dce4ec;
+  font-size: .875rem;
+  color: #193655;
+}
+.guide-trigger-bar .button {
+  transition: none;
+}
+.guide-trigger-bar .button:hover {
+  transform: none;
+  box-shadow: none;
+}
+.simulation-guide {
+  margin: 0 0 2rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid #dce4ec;
+  border-top: 4px solid #193655;
+  background: #ffffff;
+}
+.simulation-guide-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e2eaf0;
+  margin-bottom: 1.5rem;
+}
+.simulation-guide-header h2 {
+  font-size: 1.4rem;
+  font-weight: 850;
+  margin: 0.2rem 0 0.25rem;
+  color: #193655;
+}
+.simulation-guide-subtitle {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #6f8192;
+}
+.guide-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.guide-step-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 18px;
+  background: #ffffff;
+  border: 1px solid #dce4ec;
+  transition: border-color 0.15s ease;
+}
+.guide-step-card:hover {
+  border-color: #a5b8c9;
+  transform: none;
+  box-shadow: none;
+}
+.guide-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+.guide-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 2px;
+  background: #193655;
+  color: #ffffff;
+  font-weight: 850;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+.guide-step-tag {
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  color: #6f8192;
+  background: #f0f4f8;
+  padding: 3px 6px;
+  border-radius: 2px;
+}
+.guide-step-card h3 {
+  font-size: 1.05rem;
+  font-weight: 850;
+  color: #193655;
+  margin: 0 0 0.5rem;
+}
+.guide-step-card p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #6f8192;
+  flex: 1;
+}
+.guide-step-card p strong {
+  color: #193655;
+  font-weight: 700;
+}
+.guide-step-tip {
+  margin-top: 0.85rem;
+  padding: 6px 10px;
+  background: #f4f8fc;
+  border-left: 3px solid #005bbf;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #193655;
+}
+.guide-footer-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e2eaf0;
+}
+@media (max-width: 1024px) {
+  .guide-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .guide-steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .simulation-guide-header {
+    flex-direction: column;
+  }
+  .guide-trigger-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+
+

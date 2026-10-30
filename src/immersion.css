@@ -129,8 +129,8 @@
   position: relative;
   grid-column: 2;
   grid-row: 1;
-  height: min(680px, calc(100dvh - 185px));
-  min-height: 580px;
+  height: min(780px, calc(100dvh - 185px));
+  min-height: 650px;
   overflow: hidden;
   border: 2px solid #536b80;
   border-radius: 4px;
@@ -141,7 +141,7 @@
   position: absolute;
   inset: 0 0 auto;
   width: 100%;
-  height: calc(100% - 265px);
+  height: calc(100% - 365px);
 }
 .immersion-stage-shade {
   display: none;
@@ -476,21 +476,12 @@
   left: 0;
   display: flex;
   flex-direction: column;
-  height: 285px;
+  height: 385px;
   overflow: hidden;
   border-top: 1px solid #9fb4c4;
   background: #f7f9fa;
   color: var(--ink);
   backdrop-filter: none;
-}
-.immersion-stage.is-chat-empty > .patient-scene {
-  height: calc(100% - 150px);
-}
-.immersion-stage.is-chat-empty .immersion-chat {
-  height: 150px;
-}
-.immersion-stage.is-chat-empty .immersion-messages {
-  display: none;
 }
 .atlas-icon {
   display: block;
@@ -520,13 +511,15 @@
   color: #526b80;
   font-size: 0.92rem;
 }
+.immersion-empty strong { display: block; margin-bottom: 5px; color: var(--ink); }
+.immersion-empty p { margin: 0; max-width: 55ch; line-height: 1.5; }
 .immersion-exchange + .immersion-exchange {
   margin-top: 12px;
 }
 .immersion-message {
   position: relative;
   width: fit-content;
-  max-width: 85%;
+  max-width: 94%;
   margin-bottom: 6px;
   padding: 9px 11px;
   border: 1px solid #c6d9e6;
@@ -638,8 +631,8 @@
 .immersion-compose textarea {
   flex: 1;
   min-width: 0;
-  min-height: 44px;
-  max-height: 100px;
+  min-height: 72px;
+  max-height: 170px;
   padding: 8px 10px;
   resize: vertical;
   border: 1px solid #abc6d8;
@@ -779,7 +772,7 @@
   .immersion-stage {
     grid-column: 1 / -1;
     grid-row: 1;
-    height: 640px;
+    height: 730px;
   }
   .immersion-readings {
     grid-column: 1;
@@ -850,14 +843,14 @@
   }
   .immersion-stage {
     grid-column: 1;
-    height: 620px;
+    height: 720px;
     min-height: 0;
   }
   .immersion-stage > .patient-scene {
     height: 335px;
   }
   .immersion-chat {
-    height: 285px;
+    height: 385px;
   }
   .immersion-readings,
   .immersion-review {
@@ -880,13 +873,13 @@
     font-size: 0.88rem;
   }
   .immersion-stage {
-    height: 565px;
+    height: 660px;
   }
   .immersion-stage > .patient-scene {
     height: 285px;
   }
   .immersion-chat {
-    height: 280px;
+    height: 380px;
   }
   .immersion-patient-status {
     top: 8px;

@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Link, useNavigate, useParams } from "../navigation";
 import { api, ApiError } from "../api";
 import { clinicalNumber } from "../format";
@@ -68,12 +68,32 @@ export function SimulationPage() {
   const [confirmFinish, setConfirmFinish] = useState(false);
   const [evolutionExpanded, setEvolutionExpanded] = useState(false);
   const [advanceSeconds, setAdvanceSeconds] = useState(30);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!simulation) return;
     const saved = Number(localStorage.getItem(`advance-seconds:${simulation.time_limit_minutes}`));
     setAdvanceSeconds(saved >= 1 && saved <= simulation.time_limit_minutes * 60
       ? saved : defaultAdvance(simulation.time_limit_minutes));
   }, [simulation?.time_limit_minutes]);
+
+  useEffect(() => {
+    const el = messagesContainerRef.current;
+    if (!el) return;
+    const scrollToBottom = () => {
+      if (streamPreview) {
+        el.scrollTop = el.scrollHeight;
+      } else {
+        el.scrollTo({
+          top: el.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    };
+    scrollToBottom();
+    const frame = requestAnimationFrame(scrollToBottom);
+    return () => cancelAnimationFrame(frame);
+  }, [simulation?.interactions, pendingText, streamPreview, showProtocols, showReport]);
+
   const activeSymptoms = simulation?.symptoms.filter((item) => item.state === "active") || [];
   const symptom =
     activeSymptoms.find((item) => item.name === selectedSymptom)?.name ||
@@ -282,7 +302,7 @@ export function SimulationPage() {
       )}
       <div className="immersion-workspace">
         <section
-          className={`immersion-stage stage-${state}${simulation.is_running && !simulation.interactions.length && !showProtocols && !showReport ? " is-chat-empty" : ""}`}
+          className={`immersion-stage stage-${state}`}
           aria-label="Ambiente de simulação clínica"
         >
           <PatientScene
@@ -412,6 +432,7 @@ export function SimulationPage() {
               </form>
             ) : (
               <div
+                ref={messagesContainerRef}
                 className="immersion-messages"
                 aria-live="polite"
                 aria-relevant="additions"
@@ -448,7 +469,7 @@ export function SimulationPage() {
                   <p className="immersion-empty">
                     Nenhuma interação foi registrada neste atendimento.
                   </p>
-                ) : null}
+                ) : <div className="immersion-empty"><strong>Comece observando o quadro.</strong><p>Leia os sinais vitais e sintomas. Depois, pergunte sobre outras queixas ou descreva uma conduta para o sintoma selecionado. Use Protocolo se precisar de orientação.</p></div>}
                 {pendingText && <div className="immersion-exchange" aria-live="polite">
                   <div className="immersion-message student"><small>VOCÊ · ENVIANDO</small><p>{pendingText}</p></div>
                   <div className="immersion-message patient streaming"><small>PACIENTE · {streamPreview ? "RESPONDENDO" : "PREPARANDO RESPOSTA"}</small><p>{streamPreview || "Aguardando o paciente…"}</p></div>
@@ -531,7 +552,7 @@ export function SimulationPage() {
                     <div>
                       <textarea
                         id="interaction-text"
-                        rows={2}
+                        rows={3}
                         maxLength={2000}
                         value={message}
                         onChange={(event) => setMessage(event.target.value)}

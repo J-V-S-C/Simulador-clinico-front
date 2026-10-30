@@ -1,0 +1,163 @@
+SIMULADOR CLÍNICO
+RELATÓRIO DE EXPERIÊNCIA DOS USUÁRIOS — STED, SPRINT 4
+Challenge FIAP + Hospital Moinhos de Vento
+Curso: Engenharia de Software, 1º ano, 2º semestre de 2026
+
+Equipe:
+João Victor Sant'Ana Cortabitart — RM 573865
+João Victor Barbon Naymayer — RM 574025
+João Vitor Dutra de Freitas — RM 573678
+
+Data de elaboração: 30/10/2026
+Fonte das respostas: painel administrativo do Simulador Clínico, apresentado pelo responsável pelo projeto.
+Aplicação: https://simulador-clinico-front.vercel.app
+
+SUMÁRIO
+1. Resumo do MVP
+2. Objetivo e método de coleta
+3. Amostra e local de coleta
+4. Questionário aplicado
+5. Dados obtidos
+6. Cálculo das métricas e gráficos
+7. Interpretação e tomada de decisão
+8. Limitações e próximos passos
+9. Conclusão
+
+1. RESUMO DO MVP
+
+O Simulador Clínico é uma aplicação educacional para estudantes praticarem decisões em atendimentos fictícios. O estudante escolhe um caso, observa sintomas e sinais vitais, conversa em texto com um paciente virtual e descreve condutas enquanto o tempo passa e o quadro pode mudar. Pode consultar protocolos didáticos e, ao final, rever o resultado e avaliar a experiência. Uma API em Python valida as ações, mantém o estado do atendimento e salva as tentativas; a interface web mostra as respostas e a evolução. O Gemini auxilia na fala do paciente e na avaliação do texto, sob validação das regras do servidor. O produto não atende pacientes reais nem substitui orientação clínica.
+
+O problema abordado é a dificuldade de treinar a sequência de observação, pergunta, decisão e revisão apenas com casos estáticos. A proposta é permitir essa prática em um ambiente repetível, com retorno sobre o que ocorreu em cada tentativa.
+
+2. OBJETIVO E MÉTODO DE COLETA
+
+Objetivo: identificar como usuários avaliaram a clareza, a facilidade de uso e o valor das funções do MVP, transformando os resultados em melhorias justificadas.
+
+Método efetivamente documentado: questionário opcional apresentado após um atendimento concluído. As respostas ficam vinculadas à tentativa e podem ser editadas pelo próprio estudante. O responsável pelo projeto apresentou uma visão do painel administrativo com três avaliações. Este relatório usa apenas os números e comentários mostrados nessa visão, sem nomes, e-mails ou dados de pacientes.
+
+Tipo de amostragem: voluntária por conveniência, entre pessoas que concluíram uma tentativa e decidiram responder. O formulário não registra perfil acadêmico, convite, seleção prévia ou observação das tarefas. Portanto, não há comprovação de que os três respondentes formaram um grupo controle organizado ou de que todos pertencem ao público-alvo. A expressão “grupo controle” do enunciado não deve ser usada aqui como fato comprovado.
+
+3. AMOSTRA E LOCAL DE COLETA
+
+Amostra de respostas analisadas: n = 3 avaliações de experiência.
+Contas exibidas no painel no momento informado: 12.
+Local de coleta conhecido: formulário de avaliação dentro da aplicação web, acessível online após a simulação. O local físico dos participantes não foi informado.
+Período das respostas exibidas: 24/10/2026 a 28/10/2026, conforme as datas do painel apresentado.
+
+A razão 3/12 = 25% compara avaliações exibidas com contas exibidas naquele momento. NÃO é uma taxa de resposta rigorosa: uma conta pode ter várias tentativas, pode não ter concluído nenhum caso e pode enviar mais de uma avaliação ao longo do tempo. O formulário armazena uma resposta por tentativa concluída, não uma resposta por pessoa. Também não há confirmação de que as três avaliações correspondam a três pessoas distintas.
+
+4. QUESTIONÁRIO APLICADO
+
+As perguntas abaixo foram conferidas no formulário da tela de resultado:
+
+Q1. “Você gostou da experiência?”
+    Opções: “Sim, gostei” ou “Ainda pode melhorar”.
+Q2. “Clareza das informações (1 a 5)”.
+    Escala numérica de 1 a 5. O formulário não apresenta descrição para cada ponto.
+Q3. “Dificuldade de uso (1 fácil, 5 difícil)”.
+    Escala numérica de 1 a 5: valores maiores significam maior dificuldade percebida.
+Q4. “O que foi mais útil?”
+    Texto livre opcional.
+Q5. “O que devemos melhorar?”
+    Texto livre opcional.
+
+A avaliação inteira é opcional. As perguntas de texto livre não são exigidas. O questionário não mede diretamente aprendizagem clínica, tempo de conclusão das tarefas ou acessibilidade.
+
+5. DADOS OBTIDOS
+
+As respostas são identificadas apenas por códigos. Datas abaixo referem-se ao painel mostrado pelo responsável e não identificam os participantes.
+
+Código  Data da avaliação  Gostou?  Clareza  Dificuldade  Mais útil       Sugestão
+F1      28/10/2026         Não      1/5      1/5          Em branco       Em branco
+F2      28/10/2026         Não      3/5      3/5          Em branco       Em branco
+F3      24/10/2026         Sim      2/5      2/5          Os protocolos   Mais didático, com tutorial e chat maior para estudante e paciente
+
+A sugestão de F3 foi resumida sem alterar seu sentido. Nenhum nome ou e-mail foi incluído no relatório. As respostas podem ter sido editadas posteriormente na aplicação; este é um retrato dos dados apresentados, não uma exportação definitiva do banco.
+
+6. CÁLCULO DAS MÉTRICAS E GRÁFICOS
+
+6.1. Satisfação declarada
+
+Gostaram: 1 de 3 = (1 ÷ 3) × 100 = 33,3%.
+Responderam “Ainda pode melhorar”: 2 de 3 = (2 ÷ 3) × 100 = 66,7%.
+
+Gráfico 1 — satisfação (cada # representa uma resposta)
+Sim, gostei          #   1 (33,3%)
+Ainda pode melhorar  ##  2 (66,7%)
+
+6.2. Clareza das informações
+
+Notas: 1, 3 e 2.
+Média = (1 + 3 + 2) ÷ 3 = 2,0 em 5.
+Mediana: 2. Mínimo: 1. Máximo: 3.
+Notas de clareza até 2: 2 de 3 = 66,7%.
+
+Gráfico 2 — distribuição das notas de clareza
+Nota 1  #  1 resposta
+Nota 2  #  1 resposta
+Nota 3  #  1 resposta
+Nota 4     0 respostas
+Nota 5     0 respostas
+
+6.3. Dificuldade de uso
+
+Notas: 1, 3 e 2, na escala em que 1 = fácil e 5 = difícil.
+Média = (1 + 3 + 2) ÷ 3 = 2,0 em 5.
+Mediana: 2. Mínimo: 1. Máximo: 3.
+Notas de dificuldade a partir de 4: 0 de 3 = 0%.
+
+Gráfico 3 — distribuição das notas de dificuldade
+Nota 1  #  1 resposta
+Nota 2  #  1 resposta
+Nota 3  #  1 resposta
+Nota 4     0 respostas
+Nota 5     0 respostas
+
+Uma média de dificuldade 2/5 indica dificuldade relativamente baixa NESTA pequena amostra. Ela não elimina os problemas de clareza: duas pessoas disseram que a experiência ainda podia melhorar, e a única sugestão escrita pediu mais explicações.
+
+6.4. Respostas abertas
+
+Indicaram um recurso útil: 1 de 3 = 33,3%. Recurso citado: protocolos.
+Escreveram sugestão de melhoria: 1 de 3 = 33,3%.
+Deixaram cada campo aberto em branco: 2 de 3 = 66,7%.
+
+Essas proporções descrevem somente o preenchimento das perguntas opcionais. Não significam que as outras pessoas não tenham opinião.
+
+Observação sobre imagens: este arquivo foi solicitado em formato .txt. Os gráficos acima são representações textuais dos números; o formato não incorpora imagens. Para cumprir literalmente o critério de “imagens e gráficos” do documento Word, será necessário inserir no Word a captura do painel administrativo com dados pessoais ocultados e os gráficos reproduzidos em imagem. Nenhuma imagem foi criada ou anexada a este .txt.
+
+7. INTERPRETAÇÃO E TOMADA DE DECISÃO
+
+Decisão 1 — Explicar o percurso antes do primeiro atendimento.
+Evidência: clareza média de 2/5; duas notas até 2; F3 pediu explicitamente um tutorial e mais didática.
+Melhoria: foi criado um guia de três passos antes de iniciar a primeira simulação. Ele explica observação do quadro, conversa e conduta, consulta ao protocolo, tempo e resultado. O link “Como funciona?” permite reabrir o guia no painel.
+Justificativa: apresentar a sequência antes de criar a tentativa reduz a necessidade de descobrir controles sob a pressão do cronômetro. A leitura do guia não consome o tempo do caso.
+Estado: implementado no código local da interface; eficácia com usuários e publicação dessa versão ainda precisam ser verificadas.
+
+Decisão 2 — Mostrar a próxima ação no chat vazio.
+Evidência: a clareza recebeu notas 1, 2 e 3; duas pessoas não gostaram da experiência. Não houve comentário específico de F1 ou F2, então a causa exata de suas notas não pode ser determinada.
+Melhoria: o espaço de conversa passou a explicar que o estudante deve ler sinais e sintomas, perguntar sobre outras queixas ou propor uma conduta para o sintoma selecionado; a orientação também aponta para o protocolo.
+Justificativa: a instrução aparece no momento e no lugar em que a pessoa precisa agir, complementando o guia inicial.
+Estado: implementado no código local; ainda falta medir se a instrução reduz hesitação e pedidos de ajuda.
+
+Decisão 3 — Ampliar a área de conversa e digitação.
+Evidência: F3 pediu explicitamente “aumentar o tamanho do chat do usuário e do paciente”.
+Melhoria: o painel da conversa ficou mais alto em desktop e celular; o campo de texto passou a comportar mais linhas e as mensagens ganharam mais largura.
+Justificativa: há mais espaço para ler respostas longas e revisar a conduta antes de enviá-la. O acesso aos protocolos, citado como útil, foi mantido no chat.
+Estado: implementado no código local; requer verificação visual em tamanhos de tela diferentes e nova avaliação dos estudantes.
+
+Prioridade sugerida para nova validação: (1) verificar se o guia é compreendido; (2) medir se usuários iniciam a primeira interação sem ajuda; (3) observar leitura, rolagem e digitação no chat em celular. Comparar a clareza e a dificuldade após a publicação, sem atribuir causalidade apenas às médias de uma amostra pequena.
+
+8. LIMITAÇÕES E PRÓXIMOS PASSOS
+
+- A amostra é de três avaliações e não foi selecionada de forma controlada. Não é representativa de todos os estudantes.
+- O público-alvo efetivo, a localização física e as tarefas observadas não foram informados no material disponível.
+- Não há medida anterior equivalente nem nova rodada após as melhorias. Não é possível afirmar que elas já elevaram a satisfação ou a clareza.
+- As respostas são por tentativa; pessoas distintas não foram confirmadas. Um mesmo usuário pode avaliar atendimentos diferentes.
+- As datas e números vieram do painel apresentado pelo responsável pelo projeto. O relatório não acessou diretamente o banco de produção.
+- Os gráficos textuais mostram os cálculos, mas o critério da entrega original solicita documento Word com imagens. Este arquivo .txt é a base informativa solicitada, não o formato final exigido nas Tarefas do Teams.
+
+Para completar a validação exigida pelo Challenge, a equipe deve testar o MVP com pelo menos três participantes do público-alvo em um procedimento registrado: local físico ou remoto, convite/seleção, tarefas, observações, questionário, consentimento para registros anônimos e evidências visuais. O roteiro está em docs/USABILITY_STUDY.md. Depois da publicação das melhorias, aplicar novamente o questionário e registrar os resultados.
+
+9. CONCLUSÃO
+
+As três avaliações disponíveis indicam clareza média de 2,0/5 e satisfação positiva de 33,3%. A dificuldade média foi 2,0/5, em uma escala em que valores menores representam maior facilidade. O comentário livre identificou protocolos como recurso útil e pediu tutorial, mais didática e chat maior. A equipe respondeu com três mudanças concretas: guia antes do atendimento, instrução no chat vazio e ampliação da conversa. Os dados sustentam essas prioridades como hipóteses de melhoria, mas a amostra pequena e a ausência de teste posterior impedem afirmar que a experiência já melhorou. O próximo passo é uma validação observada e documentada com estudantes, seguida de nova medição após a publicação da versão atualizada.

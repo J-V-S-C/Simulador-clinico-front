@@ -45,6 +45,8 @@ export function DashboardPage() {
   const [feedbackError, setFeedbackError] = useState("");
   const [feedbackNotice, setFeedbackNotice] = useState("");
   const [busyCase, setBusyCase] = useState("");
+  const [guideCaseId, setGuideCaseId] = useState<string | null>(null);
+  const guideKey = `clinical-guide-seen:${user?.id || "guest"}`;
   const load = async () => {
     setLoading(true);
     setError("");
@@ -132,7 +134,24 @@ export function DashboardPage() {
   useEffect(() => {
     void load();
   }, []);
-  async function start(caseId: string) {
+  function openGuide(caseId = "") {
+    setGuideCaseId(caseId);
+  }
+  function dismissGuide() {
+    // Mark guide as seen so it never auto-blocks again (feedback: guide blocking start after viewing).
+    localStorage.setItem(guideKey, "1");
+    setGuideCaseId(null);
+  }
+  function start(caseId: string) {
+    // First-time students see the guide with the picked case pre-loaded so
+    // "Entendi, iniciar" fires immediately — no second click needed.
+    if (guideCaseId === null && !localStorage.getItem(guideKey)) {
+      openGuide(caseId);
+      return;
+    }
+    void beginCase(caseId);
+  }
+  async function beginCase(caseId: string) {
     setBusyCase(caseId);
     setError("");
     try {
@@ -144,6 +163,8 @@ export function DashboardPage() {
           ? minutes[caseId]
           : detail.default_time_limit_minutes,
       );
+      localStorage.setItem(guideKey, "1");
+      setGuideCaseId(null);
       navigate(`/simulacoes/${simulation.id}`);
     } catch (reason) {
       setError(
@@ -179,8 +200,103 @@ export function DashboardPage() {
           <span className="eyebrow">01 / CASOS DISPONÍVEIS</span>
           <h2>Inicie uma simulação</h2>
         </div>
-        <p>O diagnóstico será revelado ao final.</p>
+        <p className="section-heading-note">O diagnóstico é revelado ao final do atendimento.</p>
       </section>
+      <div className="guide-trigger-bar">
+        <span>Primeira vez por aqui?</span>
+        <button type="button" className="button button-quiet button-sm" onClick={() => openGuide()}>
+          Ver como funciona →
+        </button>
+      </div>
+      {guideCaseId !== null && (
+        <section className="simulation-guide" aria-labelledby="simulation-guide-title">
+          <div className="simulation-guide-header">
+            <div>
+              <span className="eyebrow">TUTORIAL</span>
+              <h2 id="simulation-guide-title">Como funciona o simulador</h2>
+              <p className="simulation-guide-subtitle">Aprenda a conduzir o atendimento clínico em 4 passos simples</p>
+            </div>
+            <button
+              type="button"
+              className="button button-outline button-sm"
+              onClick={dismissGuide}
+              aria-label="Fechar guia"
+            >
+              Fechar ×
+            </button>
+          </div>
+
+          <div className="guide-steps-grid">
+            <div className="guide-step-card">
+              <div className="guide-step-top">
+                <span className="guide-step-badge">01</span>
+                <span className="guide-step-tag">SINTOMA</span>
+              </div>
+              <h3>Selecione a queixa</h3>
+              <p>
+                Escolha qual queixa ativa você deseja abordar. Cada sintoma conta com seu próprio protocolo clínico baseado no NHS.
+              </p>
+            </div>
+
+            <div className="guide-step-card">
+              <div className="guide-step-top">
+                <span className="guide-step-badge">02</span>
+                <span className="guide-step-tag">CHAT</span>
+              </div>
+              <h3>Investigue e trate</h3>
+              <p>
+                <strong>Pergunte</strong> para investigar o quadro ou <strong>prescreva</strong> condutas com suas palavras (ex.: <em>"repouso e hidratação"</em>). O simulador avalia as ações essenciais.
+              </p>
+            </div>
+
+            <div className="guide-step-card">
+              <div className="guide-step-top">
+                <span className="guide-step-badge">03</span>
+                <span className="guide-step-tag">PROTOCOLO</span>
+              </div>
+              <h3>Consulte se precisar</h3>
+              <p>
+                Revele orientações em 3 níveis: <em>1 · Anamnese</em>, <em>2 · Direcionamento</em> e <em>3 · Conduta</em>.
+              </p>
+              <div className="guide-step-tip">Menos consultas no protocolo garantem maior pontuação.</div>
+            </div>
+
+            <div className="guide-step-card">
+              <div className="guide-step-top">
+                <span className="guide-step-badge">04</span>
+                <span className="guide-step-tag">EVOLUÇÃO</span>
+              </div>
+              <h3>Monitore o tempo</h3>
+              <p>
+                O tempo corre continuamente e sintomas não tratados pioram os sinais vitais. Estabilize o paciente antes do prazo zerar.
+              </p>
+            </div>
+          </div>
+
+          <div className="guide-footer-actions">
+            {guideCaseId ? (
+              <button
+                type="button"
+                className="button button-primary"
+                disabled={!!busyCase}
+                onClick={() => void beginCase(guideCaseId)}
+              >
+                {busyCase ? "Iniciando…" : "Entendi, iniciar atendimento →"}
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="button button-primary button-sm"
+                onClick={dismissGuide}
+              >
+                Entendi, fechar tutorial
+              </button>
+            )}
+          </div>
+        </section>
+      )}
+
+
       {error && <ErrorPanel message={error} retry={() => void load()} />}
       {caseError && (
         <ErrorPanel message={caseError} retry={() => void load()} />

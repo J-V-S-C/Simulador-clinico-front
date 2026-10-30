@@ -1,17 +1,17 @@
-# Third-party assets
+# Avisos sobre recursos visuais de terceiros
 
-## Pixel-art hospital pack
+## Pacote de pixel art hospitalar
 
-- **Assets:** `assets/pixel-hospital/*.png`
-- **Original package:** `Assets Pixel Art - Hospital.zip`
-- **Source:** package supplied by the project owner
-- **License:** no license file was included in the supplied archive
+- **Arquivos:** `assets/pixel-hospital/*.png`.
+- **Pacote recebido:** `Assets Pixel Art - Hospital.zip`.
+- **Origem:** material fornecido pelo responsável pelo projeto.
+- **Licença:** o pacote recebido não continha um arquivo de licença. A equipe deve confirmar as condições de reutilização antes de uma distribuição fora do projeto.
 
-The React simulation also uses the supplied transparent `patient.png` sprite sheet for its stable-state animation and a plant from `furniture-waiting.png`. Other original sprite sheets remain in the legacy prototype.
+A simulação em React também usa a folha transparente `patient.png` para a animação do paciente em estado estável e uma planta de `furniture-waiting.png`. Outras folhas de sprites originais permanecem no protótipo legado.
 
-## Hospital Pixel Art Asset Sheet
+## Folha “Hospital Pixel Art Asset Sheet”
 
-- **Supplied asset:** `assets/Hospital Pixel Art Asset Sheet.png`
-- **Source:** supplied by the project owner on 22 October 2026
-- **License:** no license file accompanied the image; confirm reuse terms before public release
-- **Use:** the React scene displays the hospital room from this atlas and crops its protocol, clock, and report icons for chat controls. `assets/patient-poses-generated.png` is an AI-assisted transparent derivative based on the patient poses in the supplied atlas. Both remain inside this project.
+- **Arquivo recebido:** `assets/Hospital Pixel Art Asset Sheet.png`.
+- **Origem:** fornecido pelo responsável pelo projeto em 22/10/2026.
+- **Licença:** nenhuma licença acompanhou a imagem; confirmar os direitos de uso antes de distribuição externa.
+- **Uso:** a sala usa um recorte dessa folha, e os controles do chat usam seus ícones de protocolo, relógio e denúncia. `assets/patient-poses-generated.png` é uma derivação transparente produzida com auxílio de IA a partir das poses fornecidas. Os arquivos permanecem neste projeto.
