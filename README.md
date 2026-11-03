@@ -4,8 +4,6 @@ Projeto educacional do Challenge FIAP em parceria com o Hospital Moinhos de Vent
 
 **Aplicação em produção:** [simulador-clinico-front.vercel.app](https://simulador-clinico-front.vercel.app)
 
-**Código da interface:** [GitHub — frontend](https://github.com/J-V-S-C/Simulador-clinico-front)
-
 **Código da API:** [GitHub — backend](https://github.com/J-V-S-C/simulador-critico-backend)
 
 **Equipe e RM:** [INTEGRANTES.TXT](INTEGRANTES.TXT)
