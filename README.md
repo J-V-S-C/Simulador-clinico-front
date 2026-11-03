@@ -2,7 +2,7 @@
 
 Projeto educacional do Challenge FIAP em parceria com o Hospital Moinhos de Vento. O Simulador Clínico permite que estudantes pratiquem decisões em atendimentos fictícios, com tempo limitado, conversa com um paciente virtual e alterações no quadro clínico ao longo da tentativa. **Ele não atende pacientes reais nem substitui avaliação médica ou protocolos locais.**
 
-**Aplicação:** [simulador-clinico-front.vercel.app](https://simulador-clinico-front.vercel.app) (endereço informado pela equipe; disponibilidade não verificada nesta revisão)
+**Aplicação em produção:** [simulador-clinico-front.vercel.app](https://simulador-clinico-front.vercel.app)
 
 **Código da interface:** [GitHub — frontend](https://github.com/J-V-S-C/Simulador-clinico-front)
 
@@ -25,6 +25,19 @@ A Sprint 3 entregou a experiência visual navegável. Na Sprint 4, a interface f
 5. No resultado, o estudante revê o desfecho e suas interações. Pode avaliar a experiência e editar a avaliação depois, na aba **Feedbacks** do painel.
 
 Há um acesso administrativo separado em `/admin/entrar` para consultar contas e avaliações enviadas. Suas credenciais são definidas exclusivamente no ambiente do backend e **não devem ser publicadas no README**.
+
+### Rotas e autenticação
+
+| Rota | Acesso | Finalidade |
+| --- | --- | --- |
+| `/entrar` | Público | Cadastro e entrada do estudante. |
+| `/admin/entrar` | Público | Formulário de entrada do administrador. |
+| `/` | Estudante autenticado | Painel de casos, histórico, guia e feedbacks. |
+| `/simulacoes/[id]` | Estudante autenticado | Atendimento do caso selecionado. |
+| `/simulacoes/[id]/resultado` | Estudante autenticado | Resultado e avaliação da tentativa. |
+| `/admin` | Administrador autenticado | Contas cadastradas e avaliações recebidas. |
+
+As rotas de estudante verificam a sessão e redirecionam para `/entrar` quando ela não existe. A área administrativa usa uma sessão própria. Para testar o percurso do estudante, o avaliador pode criar uma conta fictícia pela interface; **não é necessária uma senha compartilhada**. Para testar `/admin`, a equipe deve fornecer as credenciais ao professor em um canal privado da entrega, sem incluí-las no repositório ou no ZIP.
 
 ## O que a aplicação entrega hoje
 
@@ -79,7 +92,7 @@ O painel administrativo apresentado pela equipe em 03/11/2026 registrava 47 cont
 ## Publicação e acesso para avaliação
 
 - **Frontend:** [abrir a aplicação na Vercel](https://simulador-clinico-front.vercel.app).
-- **API:** [documentação interativa](https://clinical-simulator-api.duckdns.org/docs) e [verificação de saúde](https://clinical-simulator-api.duckdns.org/api/health), endereços registrados no repositório do backend. A disponibilidade pública não foi confirmada nesta revisão.
+- **API:** [documentação interativa](https://clinical-simulator-api.duckdns.org/docs) e [verificação de saúde](https://clinical-simulator-api.duckdns.org/api/health).
 - **Conta de teste do estudante:** o avaliador pode criar uma conta pela tela `/entrar`; use dados fictícios. Não há uma senha compartilhada publicada.
 - **Administração:** `/admin/entrar` exige credenciais fornecidas à banca separadamente pelo responsável. Nunca inclua a senha administrativa no Git.
 - **Protótipo no Figma:** nenhum link foi identificado no repositório; incluir aqui se a equipe tiver um protótipo utilizado na entrega.

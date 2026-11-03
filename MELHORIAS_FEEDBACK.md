@@ -8,6 +8,8 @@ Os dados abaixo vêm do conteúdo do painel administrativo fornecido pela equipe
 
 ## Resultados das 54 avaliações
 
+**Objetivo da validação:** verificar se as pessoas conseguem usar o atendimento e identificar pontos de dificuldade na interface. A coleta ocorreu pelo formulário opcional após tentativas concluídas na aplicação online. O painel registrava 47 contas e 54 avaliações; não registra formação acadêmica, dispositivo usado nem um roteiro de tarefas aplicado individualmente. Por isso, este documento descreve as atividades evidenciadas pelos comentários, sem afirmar que houve observação presencial ou que as 54 avaliações sejam de pessoas distintas.
+
 | Indicador | Resultado |
 | --- | ---: |
 | Gostaram da experiência | 27 de 54 (50%) |
@@ -17,6 +19,8 @@ Os dados abaixo vêm do conteúdo do painel administrativo fornecido pela equipe
 | Escreveram sugestão de melhoria | 27 de 54 (50%) |
 
 As médias são descritivas das avaliações exibidas naquele momento. O formulário é opcional e cada resposta se refere a uma tentativa, não a uma pessoa única. Os comentários permitem identificar problemas concretos: orientação inicial insuficiente, dúvidas sobre como conversar e propor condutas, respostas do paciente que parecem travar o progresso, dificuldade para localizar sinais vitais e protocolos considerados vagos em alguns casos. Também há elogios aos protocolos, ao tutorial, ao temporizador e às respostas do paciente.
+
+**Atividades identificáveis nos relatos:** começar um atendimento, conversar com o paciente, propor condutas, consultar protocolos, observar sinais vitais e usar o controle de tempo. Essas atividades aparecem nos comentários recebidos; não há registro de uma lista de tarefas previamente solicitadas a cada pessoa.
 
 ## Mudanças orientadas pelo feedback
 
