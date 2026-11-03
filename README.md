@@ -14,7 +14,7 @@ Projeto educacional do Challenge FIAP em parceria com o Hospital Moinhos de Vent
 
 Estudar um caso clínico apenas pela leitura não permite experimentar a sequência de decisões de um atendimento: observar sinais, fazer perguntas, agir, perceber mudanças e lidar com o tempo. O projeto oferece um ambiente de treino para esse percurso. O estudante pode repetir casos e analisar o resultado sem expor pacientes reais. O foco é **praticar raciocínio e condutas em uma simulação didática**, não emitir diagnóstico ou recomendação para uso clínico.
 
-A Sprint 3 entregou a experiência visual navegável. Na Sprint 4, a interface foi integrada a uma API em Python, que processa e salva as tentativas. O projeto também passou a coletar avaliações dos estudantes, usadas para orientar melhorias. Os registros técnicos e as evidências estão em [docs/VALIDATION.md](docs/VALIDATION.md); o modelo para a validação de usabilidade exigida pelo Challenge está em [docs/USABILITY_STUDY.md](docs/USABILITY_STUDY.md).
+A Sprint 3 entregou a experiência visual navegável. Na Sprint 4, a interface foi integrada a uma API em Python, que processa e salva as tentativas. O projeto também passou a coletar avaliações reais dos estudantes, usadas para orientar melhorias. O registro dessas avaliações e das mudanças está em [MELHORIAS_FEEDBACK.md](MELHORIAS_FEEDBACK.md).
 
 ## Como usar
 
@@ -50,7 +50,7 @@ A simulação usa simplificações para ensinar. A melhora imediata de indicador
 | **Vercel para a interface e VPS Oracle para a API** | A interface é publicada separadamente do servidor que guarda dados e segredos. `API_BASE_URL` liga as duas partes; `ALLOWED_ORIGINS` restringe quais origens podem chamar a API pelo navegador. |
 | **`sessionStorage` e `localStorage`** | A sessão de acesso fica na aba do navegador. Preferências não clínicas, como duração escolhida e guia já visto, ficam em `localStorage`. Resultados clínicos permanecem no backend. |
 
-O fluxo integrado é: **navegador envia ação → API valida e processa → banco salva → API devolve o novo estado → navegador apresenta o resultado**. A resposta parcial do paciente aparece por transmissão de eventos enquanto é gerada; a interface só considera definitiva a resposta validada e salva. Se a IA falhar, o texto digitado é preservado para nova tentativa. As decisões de arquitetura e seus limites estão detalhados em [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md).
+O fluxo integrado é: **navegador envia ação → API valida e processa → banco salva → API devolve o novo estado → navegador apresenta o resultado**. A resposta parcial do paciente aparece por transmissão de eventos enquanto é gerada; a interface só considera definitiva a resposta validada e salva. Se a IA falhar, o texto digitado é preservado para nova tentativa.
 
 ## Executar no computador
 
@@ -72,17 +72,9 @@ npm run start
 
 O frontend não contém a chave Gemini nem a senha administrativa. A configuração de produção da Vercel deve apontar `API_BASE_URL` para a API HTTPS; mudar essa variável exige uma nova publicação da interface. O backend precisa permitir a origem exata do frontend em `ALLOWED_ORIGINS`.
 
-## Validação, feedback e melhorias
+## Feedback e melhorias
 
-O requisito da Sprint 4 separa **avaliações enviadas no produto** de **teste de usabilidade observado com pelo menos três participantes**. O painel administrativo mostrou 12 contas e 3 avaliações em 30/10/2026, conforme os dados apresentados pelo responsável pelo projeto. Esses números mudam com o uso; nomes e e-mails não são reproduzidos aqui. Três avaliações não comprovam, por si só, a realização do teste observado exigido pelo Challenge. O roteiro e os campos para registrar participantes, tarefas e evidências estão em [docs/USABILITY_STUDY.md](docs/USABILITY_STUDY.md).
-
-| Avaliação anônima | O que foi relatado | Ajuste realizado |
-| --- | --- | --- |
-| F1 | Experiência negativa; clareza 1/5 e dificuldade 1/5; sem comentário livre. | Guia de três passos antes da primeira tentativa, com acesso posterior por **Como funciona?**. Explica observação, conversa, conduta, protocolo, tempo e resultado. |
-| F2 | Experiência negativa; clareza 3/5 e dificuldade 3/5; sem comentário livre. | Instrução no chat vazio para indicar a primeira ação dentro da própria simulação. |
-| F3 | Experiência positiva; clareza 2/5 e dificuldade 2/5. Elogiou os protocolos e pediu tutorial, explicações mais didáticas e chat maior. | Guia inicial, manutenção do acesso aos protocolos no chat, ampliação da conversa e do campo de texto em desktop e celular. |
-
-O guia aparece **antes** da criação da tentativa, para que sua leitura não consuma o tempo do caso. As alterações respondem aos relatos recebidos; sua eficácia ainda precisa ser medida em uma nova rodada com usuários. Consulte [docs/VALIDATION.md](docs/VALIDATION.md) para os testes técnicos e capturas de tela já registrados, observando que imagens antigas mostram versões anteriores da interface.
+O painel administrativo apresentado pela equipe em 03/11/2026 registrava 47 contas e 54 avaliações de atendimentos reais no produto. O [documento de melhorias](MELHORIAS_FEEDBACK.md) resume os indicadores sem dados pessoais, relaciona os comentários às mudanças implementadas e indica os pontos ainda abertos. Uma conta pode enviar avaliações de mais de uma tentativa, portanto 54 avaliações não representam necessariamente 54 pessoas distintas.
 
 ## Publicação e acesso para avaliação
 
@@ -104,7 +96,7 @@ A API deve permanecer em HTTPS, com banco persistente, chaves privadas apenas no
 | `src/hooks/useSimulation.ts` | Atualização periódica da simulação e do relógio apresentado. |
 | `src/api.ts`, `src/auth.tsx`, `src/types.ts` | Comunicação com API, sessão do estudante e contratos de dados. |
 | `src/styles.css`, `src/immersion.css`, `src/scene.css` | Estilos gerais, sala de atendimento e arte. |
-| `docs/`, `assets/` | Evidências, planejamento e recursos visuais. |
+| `MELHORIAS_FEEDBACK.md`, `assets/` | Registro das melhorias orientadas pelas avaliações e recursos visuais. |
 
 ## Uso de inteligência artificial no desenvolvimento
 

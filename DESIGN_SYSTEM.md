@@ -32,4 +32,4 @@ A sala usa a folha de pixel art fornecida ao projeto e um paciente derivado em t
 
 ## Validação visual
 
-As capturas históricas de desktop e celular estão em [docs/VALIDATION.md](docs/VALIDATION.md). Elas correspondem a revisões anteriores da interface. A versão atual, com guia e chat ampliado, ainda precisa de verificação visual registrada e de teste com participantes representativos. O roteiro está em [docs/USABILITY_STUDY.md](docs/USABILITY_STUDY.md).
+As mudanças na interface orientadas pelas avaliações dos estudantes estão registradas em [MELHORIAS_FEEDBACK.md](MELHORIAS_FEEDBACK.md).
